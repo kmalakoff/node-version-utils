@@ -16,7 +16,7 @@ var OPTIONS = {
 
 var VERSIONS = ['v14.1.0', 'v0.8.25'];
 
-function addTests(version, target) {
+function addTests(version) {
   var INSTALL_DIR = path.resolve(path.join(OPTIONS.installedDirectory, version));
 
   describe(version, function () {
@@ -25,7 +25,7 @@ function addTests(version, target) {
     });
 
     it('npm --version', function (done) {
-      versionUtils.set(INSTALL_DIR, 'npm', ['--version'], { stdout: 'string' }, function (err, res) {
+      versionUtils.spawn(INSTALL_DIR, 'npm', ['--version'], { stdout: 'string' }, function (err, res) {
         assert.ok(!err);
         var lines = cr(res.stdout).split('\n');
         assert.ok(isVersion(lines.slice(-2, -1)[0]));
@@ -34,7 +34,7 @@ function addTests(version, target) {
     });
 
     it('node --version', function (done) {
-      versionUtils.set(INSTALL_DIR, NODE, ['--version'], { stdout: 'string' }, function (err, res) {
+      versionUtils.spawn(INSTALL_DIR, NODE, ['--version'], { stdout: 'string' }, function (err, res) {
         assert.ok(!err);
         var lines = cr(res.stdout).split('\n');
         assert.equal(lines.slice(-2, -1)[0], version);
@@ -46,7 +46,7 @@ function addTests(version, target) {
       if (typeof Promise === 'undefined') return done(); // no promise support
 
       versionUtils
-        .set(INSTALL_DIR, 'npm', ['--version'], { stdout: 'string' })
+        .spawn(INSTALL_DIR, 'npm', ['--version'], { stdout: 'string' })
         .then(function (res) {
           var lines = cr(res.stdout).split('\n');
           assert.ok(isVersion(lines.slice(-2, -1)[0]));
@@ -59,7 +59,7 @@ function addTests(version, target) {
       if (typeof Promise === 'undefined') return done(); // no promise support
 
       versionUtils
-        .set(INSTALL_DIR, NODE, ['--version'], { stdout: 'string' })
+        .spawn(INSTALL_DIR, NODE, ['--version'], { stdout: 'string' })
         .then(function (res) {
           var lines = cr(res.stdout).split('\n');
           assert.equal(lines.slice(-2, -1)[0], version);
@@ -70,7 +70,7 @@ function addTests(version, target) {
   });
 }
 
-describe('set', function () {
+describe('spawn', function () {
   // before(function (callback) {
   //   rimraf(TMP_DIR, callback.bind(null, null));
   // });
@@ -82,5 +82,5 @@ describe('set', function () {
   });
 
   // TODO
-  describe('unhappy path', function () {});
+  describe('unhappy path', function () { });
 });
