@@ -1,6 +1,6 @@
 {
   "name": "node-version-utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Utilities for running commands on a specific version of node by installed path",
   "keywords": [
     "node",
@@ -20,9 +20,6 @@
   },
   "license": "MIT",
   "main": "index.js",
-  "bin": {
-    "nvu": "./bin/node-version-utils.js"
-  },
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint .",
