@@ -20,9 +20,6 @@
   },
   "license": "MIT",
   "main": "index.js",
-  "bin": {
-    "nvu": "./bin/node-version-utils.js"
-  },
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint .",
