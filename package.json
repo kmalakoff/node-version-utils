@@ -1,6 +1,6 @@
 {
   "name": "node-version-utils",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Utilities for running commands on a specific version of node by installed path",
   "keywords": [
     "node",
