@@ -28,8 +28,6 @@
   },
   "dependencies": {
     "cross-spawn-cb": "^0.3.1",
-    "end-with": "^1.0.2",
-    "homedir-polyfill": "^1.0.3",
     "object-assign": "^4.1.1"
   },
   "devDependencies": {
