@@ -1,6 +1,6 @@
 {
   "name": "node-version-utils",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Utilities for running commands on a specific version of node by installed path",
   "keywords": [
     "node",
@@ -28,8 +28,6 @@
   },
   "dependencies": {
     "cross-spawn-cb": "^0.3.1",
-    "end-with": "^1.0.2",
-    "homedir-polyfill": "^1.0.3",
     "object-assign": "^4.1.1"
   },
   "devDependencies": {
