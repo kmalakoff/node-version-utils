@@ -47,7 +47,7 @@
     "lodash.find": "^4.6.0",
     "match-semver": "^0.1.0",
     "mocha-compat": "^3.5.5",
-    "node-install-release": "^0.1.30",
+    "node-install-release": "^0.1.31",
     "prettier": "^2.3.2",
     "rimraf": "^2.7.1",
     "semver": "^5.7.1"
