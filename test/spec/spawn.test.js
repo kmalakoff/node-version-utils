@@ -27,7 +27,7 @@ function addTests(version) {
 
   describe(version, function () {
     before(function (callback) {
-      nodeInstall(version, INSTALL_DIR, OPTIONS, function(err) {
+      nodeInstall(version, INSTALL_DIR, OPTIONS, function (err) {
         callback(err);
       });
     });
