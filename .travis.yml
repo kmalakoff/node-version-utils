@@ -17,4 +17,4 @@ before_install:
 - npm uninstall node-version-use -g
 script:
 - npm install node-version-use -g
-- nvu engines npm test
+- nvu 0.12 npm test
