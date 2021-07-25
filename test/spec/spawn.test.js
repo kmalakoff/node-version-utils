@@ -18,7 +18,9 @@ var OPTIONS = {
   installedDirectory: path.join(TMP_DIR, 'installed'),
 };
 
-var VERSIONS = ['v14.1.0', 'v12.18.1', 'v0.8.25'];
+// TODO: put back
+//var VERSIONS = ['v14.1.0', 'v12.18.1', 'v0.8.25'];
+var VERSIONS = ['v14.1.0'];
 
 function addTests(version) {
   var INSTALL_DIR = path.resolve(path.join(OPTIONS.installedDirectory, version));
