@@ -29,7 +29,7 @@
   "dependencies": {
     "cross-spawn-cb": "^0.3.1",
     "object-assign": "^4.1.1",
-    "path-string-prepend": "^0.1.0"
+    "path-string-prepend": "^0.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
