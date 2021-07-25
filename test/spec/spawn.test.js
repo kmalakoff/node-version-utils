@@ -27,7 +27,9 @@ function addTests(version) {
 
   describe(version, function () {
     before(function (callback) {
-      nodeInstall(version, INSTALL_DIR, OPTIONS, callback);
+      nodeInstall(version, INSTALL_DIR, OPTIONS, function(err) {
+        callback(err);
+      });
     });
 
     it('npm --version', function (done) {
@@ -81,11 +83,11 @@ function addTests(version) {
 }
 
 describe('spawn', function () {
-  // before(function (callback) {
-  //   rimraf(TMP_DIR, function (err) {
-  //     err && err.code !== 'EEXIST' ? callback(err) : callback();
-  //   });
-  // });
+  before(function (callback) {
+    rimraf(TMP_DIR, function (err) {
+      err && err.code !== 'EEXIST' ? callback(err) : callback();
+    });
+  });
 
   describe('happy path', function () {
     for (var i = 0; i < VERSIONS.length; i++) {
