@@ -7,9 +7,9 @@ jobs:
   # - stage: Tests
   #   name: Unit Tests on OSX
   #   os: osx
-  - stage: Tests
-    name: Unit Tests on Linux
-    os: linux
+  # - stage: Tests
+  #   name: Unit Tests on Linux
+  #   os: linux
   - stage: Tests
     name: Unit Tests on Windows
     os: windows
