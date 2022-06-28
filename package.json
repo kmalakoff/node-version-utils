@@ -52,7 +52,7 @@
     "node-install-release": "^0.2.4",
     "node-version-use": "^0.2.2",
     "prettier": "^2.7.1",
-    "rimraf": "^2.7.1",
+    "rimraf": "^3.0.2",
     "semver": "^5.7.1"
   },
   "engines": {
