@@ -30,7 +30,8 @@
     "test": "mocha-compat test/spec/**/*.test.js --no-timeouts"
   },
   "dependencies": {
-    "cross-spawn-cb": "^0.5.13",
+    "cross-spawn-cb": "^0.6.2",
+    "env-path-key": "^0.3.0",
     "just-extend": "^6.0.1",
     "path-string-prepend": "^0.2.0"
   },
