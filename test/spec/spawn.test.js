@@ -1,6 +1,6 @@
 var assert = require('assert');
 var path = require('path');
-var rimraf = require('rimraf');
+// var rimraf = require('rimraf');
 var isVersion = require('is-version');
 var cr = require('cr');
 var nodeInstall = require('node-install-release');
