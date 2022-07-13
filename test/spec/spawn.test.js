@@ -33,7 +33,7 @@ function addTests(version) {
     });
 
     it('npm --version', function (done) {
-      versionUtils.spawn(INSTALL_DIR, 'npm', ['--version'], { silent: true, stdout: 'string' }, function (err, res) {
+      versionUtils.spawn(INSTALL_DIR, 'npm', ['--version'], { silent: true, encoding: 'utf8' }, function (err, res) {
         assert.ok(!err);
         var lines = cr(res.stdout).split('\n');
         var resultVersion = lines.slice(-2, -1)[0];
@@ -44,7 +44,7 @@ function addTests(version) {
     });
 
     it('node --version', function (done) {
-      versionUtils.spawn(INSTALL_DIR, NODE, ['--version'], { silent: true, stdout: 'string' }, function (err, res) {
+      versionUtils.spawn(INSTALL_DIR, NODE, ['--version'], { silent: true, encoding: 'utf8' }, function (err, res) {
         assert.ok(!err);
         var lines = cr(res.stdout).split('\n');
         assert.equal(lines.slice(-2, -1)[0], version);
@@ -56,7 +56,7 @@ function addTests(version) {
       if (typeof Promise === 'undefined') return done(); // no promise support
 
       versionUtils
-        .spawn(INSTALL_DIR, 'npm', ['--version'], { silent: true, stdout: 'string' })
+        .spawn(INSTALL_DIR, 'npm', ['--version'], { silent: true, encoding: 'utf8' })
         .then(function (res) {
           var lines = cr(res.stdout).split('\n');
           var resultVersion = lines.slice(-2, -1)[0];
@@ -71,7 +71,7 @@ function addTests(version) {
       if (typeof Promise === 'undefined') return done(); // no promise support
 
       versionUtils
-        .spawn(INSTALL_DIR, NODE, ['--version'], { silent: true, stdout: 'string' })
+        .spawn(INSTALL_DIR, NODE, ['--version'], { silent: true, encoding: 'utf8' })
         .then(function (res) {
           var lines = cr(res.stdout).split('\n');
           assert.equal(lines.slice(-2, -1)[0], version);

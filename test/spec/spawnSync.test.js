@@ -34,7 +34,7 @@ function addTests(version) {
 
     it('npm --version', function () {
       try {
-        var res = versionUtils.spawnSync(INSTALL_DIR, 'npm', ['--version'], { silent: true, stdout: 'string' });
+        var res = versionUtils.spawnSync(INSTALL_DIR, 'npm', ['--version'], { silent: true, encoding: 'utf8' });
         var lines = cr(res.stdout).split('\n');
         var resultVersion = lines.slice(-2, -1)[0];
         assert.ok(isVersion(resultVersion));
@@ -46,7 +46,7 @@ function addTests(version) {
 
     it('node --version', function () {
       try {
-        var res = versionUtils.spawnSync(INSTALL_DIR, NODE, ['--version'], { silent: true, stdout: 'string' });
+        var res = versionUtils.spawnSync(INSTALL_DIR, NODE, ['--version'], { silent: true, encoding: 'utf8' });
         var lines = cr(res.stdout).split('\n');
         assert.equal(lines.slice(-2, -1)[0], version);
       } catch (err) {
