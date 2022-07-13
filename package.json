@@ -30,12 +30,12 @@
     "test": "mocha-compat test/spec/**/*.test.js --no-timeouts"
   },
   "dependencies": {
-    "cross-spawn-cb": "^0.5.12",
+    "cross-spawn-cb": "^0.5.13",
     "just-extend": "^6.0.1",
     "path-string-prepend": "^0.2.0"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.6",
     "cr": "^0.1.0",
     "depcheck": "^1.4.3",
     "dis-dat": "^0.1.7",
