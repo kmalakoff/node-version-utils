@@ -33,7 +33,8 @@
     "cross-spawn-cb": "^0.6.3",
     "env-path-key": "^0.3.0",
     "just-extend": "^6.0.1",
-    "path-string-prepend": "^0.2.0"
+    "path-string-prepend": "^0.2.0",
+    "rimraf": "^2.7.1"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^5.30.7",
@@ -49,7 +50,7 @@
     "lodash.find": "^4.6.0",
     "match-semver": "^0.1.0",
     "mocha-compat": "^3.5.5",
-    "node-install-release": "^0.2.8",
+    "node-install-release": "^0.3.0",
     "prettier": "^2.7.1",
     "semver": "^5.7.1"
   },
