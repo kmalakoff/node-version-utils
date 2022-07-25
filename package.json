@@ -34,6 +34,7 @@
   "dependencies": {
     "cross-spawn-cb": "^0.6.6",
     "env-path-key": "^0.3.0",
+    "es6-promise": "^4.2.8",
     "just-extend": "^6.0.1",
     "path-string-prepend": "^0.2.1",
     "rimraf": "^2.7.1"
