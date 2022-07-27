@@ -32,14 +32,15 @@
     "test:engines": "nvu engines npm test"
   },
   "dependencies": {
-    "cross-spawn-cb": "^0.6.6",
+    "cross-spawn-cb": "^0.6.7",
     "env-path-key": "^0.3.0",
+    "es6-promise": "^4.2.8",
     "just-extend": "^6.0.1",
     "path-string-prepend": "^0.2.1",
     "rimraf": "^2.7.1"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^5.30.7",
+    "@typescript-eslint/parser": "^5.31.0",
     "cr": "^0.1.0",
     "depcheck": "^1.4.3",
     "eslint": "^8.20.0",
