@@ -32,7 +32,7 @@
     "test:engines": "nvu engines npm test"
   },
   "dependencies": {
-    "cross-spawn-cb": "^0.6.6",
+    "cross-spawn-cb": "^0.6.8",
     "env-path-key": "^0.3.0",
     "es6-promise": "^4.2.8",
     "just-extend": "^6.0.1",
@@ -40,10 +40,10 @@
     "rimraf": "^2.7.1"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^5.30.7",
+    "@typescript-eslint/parser": "^5.31.0",
     "cr": "^0.1.0",
     "depcheck": "^1.4.3",
-    "eslint": "^8.20.0",
+    "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
@@ -52,7 +52,7 @@
     "lodash.find": "^4.6.0",
     "match-semver": "^0.1.1",
     "mocha-compat": "^3.5.5",
-    "node-install-release": "^0.3.6",
+    "node-install-release": "^0.3.10",
     "prettier": "^2.7.1",
     "semver": "^5.7.1"
   },
