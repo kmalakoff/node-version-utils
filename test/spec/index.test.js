@@ -79,74 +79,74 @@ function addTests(version) {
       });
     });
 
-  describe('spawnSync', function () {
-    it('npm --version', function () {
-      try {
-        var res = versionUtils.spawnSync(INSTALL_DIR, 'npm', ['--version'], { silent: true, encoding: 'utf8' });
-        var lines = cr(res.stdout).split('\n');
-        var resultVersion = lines.slice(-2, -1)[0];
-        assert.ok(isVersion(resultVersion));
-        assert.ok(semver.gte(resultVersion, npmVersion.bundled));
-      } catch (err) {
-        assert.ok(!err);
-      }
-    });
+    describe('spawnSync', function () {
+      it('npm --version', function () {
+        try {
+          var res = versionUtils.spawnSync(INSTALL_DIR, 'npm', ['--version'], { silent: true, encoding: 'utf8' });
+          var lines = cr(res.stdout).split('\n');
+          var resultVersion = lines.slice(-2, -1)[0];
+          assert.ok(isVersion(resultVersion));
+          assert.ok(semver.gte(resultVersion, npmVersion.bundled));
+        } catch (err) {
+          assert.ok(!err);
+        }
+      });
 
-    it('node --version', function () {
-      try {
-        var res = versionUtils.spawnSync(INSTALL_DIR, NODE, ['--version'], { silent: true, encoding: 'utf8' });
-        var lines = cr(res.stdout).split('\n');
-        assert.equal(lines.slice(-2, -1)[0], version);
-      } catch (err) {
-        assert.ok(!err);
-      }
-    });
-  });
-
-  describe('spawnOptions', function () {
-    it('npm --version', function (done) {
-      crossSpawn('npm', ['--version'], versionUtils.spawnOptions(INSTALL_DIR, { silent: true, encoding: 'utf8' }), function (err, res) {
-        assert.ok(!err);
-        var lines = cr(res.stdout).split('\n');
-        var resultVersion = lines.slice(-2, -1)[0];
-        assert.ok(isVersion(resultVersion));
-        assert.ok(semver.gte(resultVersion, npmVersion.bundled));
-        done();
+      it('node --version', function () {
+        try {
+          var res = versionUtils.spawnSync(INSTALL_DIR, NODE, ['--version'], { silent: true, encoding: 'utf8' });
+          var lines = cr(res.stdout).split('\n');
+          assert.equal(lines.slice(-2, -1)[0], version);
+        } catch (err) {
+          assert.ok(!err);
+        }
       });
     });
 
-    it('node --version', function (done) {
-      crossSpawn(NODE, ['--version'], versionUtils.spawnOptions(INSTALL_DIR, { silent: true, encoding: 'utf8' }), function (err, res) {
-        assert.ok(!err);
-        var lines = cr(res.stdout).split('\n');
-        assert.equal(lines.slice(-2, -1)[0], version);
-        done();
+    describe('spawnOptions', function () {
+      it('npm --version', function (done) {
+        crossSpawn('npm', ['--version'], versionUtils.spawnOptions(INSTALL_DIR, { silent: true, encoding: 'utf8' }), function (err, res) {
+          assert.ok(!err);
+          var lines = cr(res.stdout).split('\n');
+          var resultVersion = lines.slice(-2, -1)[0];
+          assert.ok(isVersion(resultVersion));
+          assert.ok(semver.gte(resultVersion, npmVersion.bundled));
+          done();
+        });
+      });
+
+      it('node --version', function (done) {
+        crossSpawn(NODE, ['--version'], versionUtils.spawnOptions(INSTALL_DIR, { silent: true, encoding: 'utf8' }), function (err, res) {
+          assert.ok(!err);
+          var lines = cr(res.stdout).split('\n');
+          assert.equal(lines.slice(-2, -1)[0], version);
+          done();
+        });
+      });
+
+      it('npm --version', function () {
+        try {
+          var res = crossSpawn.sync('npm', ['--version'], versionUtils.spawnOptions(INSTALL_DIR, { silent: true, encoding: 'utf8' }));
+          var lines = cr(res.stdout).split('\n');
+          var resultVersion = lines.slice(-2, -1)[0];
+          assert.ok(isVersion(resultVersion));
+          assert.ok(semver.gte(resultVersion, npmVersion.bundled));
+        } catch (err) {
+          assert.ok(!err);
+        }
+      });
+
+      it('node --version', function () {
+        try {
+          var res = crossSpawn.sync(NODE, ['--version'], versionUtils.spawnOptions(INSTALL_DIR, { silent: true, encoding: 'utf8' }));
+          var lines = cr(res.stdout).split('\n');
+          assert.equal(lines.slice(-2, -1)[0], version);
+        } catch (err) {
+          assert.ok(!err);
+        }
       });
     });
-
-    it('npm --version', function () {
-      try {
-        var res = crossSpawn.sync('npm', ['--version'], versionUtils.spawnOptions(INSTALL_DIR, { silent: true, encoding: 'utf8' }));
-        var lines = cr(res.stdout).split('\n');
-        var resultVersion = lines.slice(-2, -1)[0];
-        assert.ok(isVersion(resultVersion));
-        assert.ok(semver.gte(resultVersion, npmVersion.bundled));
-      } catch (err) {
-        assert.ok(!err);
-      }
-    });
-
-    it('node --version', function () {
-      try {
-        var res = crossSpawn.sync(NODE, ['--version'], versionUtils.spawnOptions(INSTALL_DIR, { silent: true, encoding: 'utf8' }));
-        var lines = cr(res.stdout).split('\n');
-        assert.equal(lines.slice(-2, -1)[0], version);
-      } catch (err) {
-        assert.ok(!err);
-      }
-    });
   });
-});
 }
 
 describe('node-version-utils', function () {
