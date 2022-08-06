@@ -32,7 +32,7 @@
     "test:engines": "nvu engines npm test"
   },
   "dependencies": {
-    "cross-spawn-cb": "^0.6.10",
+    "cross-spawn-cb": "^0.6.14",
     "env-path-key": "^0.3.0",
     "es6-promise": "^4.2.8",
     "just-extend": "^6.0.1",
@@ -52,7 +52,7 @@
     "lodash.find": "^4.6.0",
     "match-semver": "^0.1.1",
     "mocha-compat": "^3.5.5",
-    "node-install-release": "^0.3.12",
+    "node-install-release": "^0.3.16",
     "prettier": "^2.7.1",
     "semver": "^5.7.1"
   },
