@@ -52,7 +52,7 @@
     "lodash.find": "^4.6.0",
     "match-semver": "^0.1.1",
     "mocha-compat": "^3.5.5",
-    "node-install-release": "^0.3.16",
+    "node-install-release": "^0.3.17",
     "prettier": "^2.7.1",
     "semver": "^5.7.1"
   },
