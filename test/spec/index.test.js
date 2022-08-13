@@ -1,6 +1,6 @@
 var assert = require('assert');
 var path = require('path');
-var rimraf = require('rimraf');
+// var rimraf = require('rimraf');
 var isVersion = require('is-version');
 var cr = require('cr');
 var nodeInstall = require('node-install-release');
@@ -8,6 +8,7 @@ var match = require('match-semver');
 var find = require('lodash.find');
 var semver = require('semver');
 var crossSpawn = require('cross-spawn-cb');
+var resolveVersions = require('node-resolve-versions');
 
 var versionUtils = require('../../lib');
 var npmVersions = require('../lib/npmVersions');
@@ -18,8 +19,7 @@ var OPTIONS = {
   cacheDirectory: path.join(TMP_DIR, 'cache'),
   installedDirectory: path.join(TMP_DIR, 'installed'),
 };
-
-var VERSIONS = ['v14.1.0', 'v12.18.1', 'v0.8.25'];
+var VERSIONS = resolveVersions.sync('>=0.8', { range: 'major,even' });
 
 function addTests(version) {
   var INSTALL_DIR = path.resolve(path.join(OPTIONS.installedDirectory, version));
@@ -150,11 +150,11 @@ function addTests(version) {
 }
 
 describe('node-version-utils', function () {
-  before(function (callback) {
-    rimraf(TMP_DIR, function (err) {
-      err && err.code !== 'EEXIST' ? callback(err) : callback();
-    });
-  });
+  // before(function (callback) {
+  //   rimraf(TMP_DIR, function (err) {
+  //     err && err.code !== 'EEXIST' ? callback(err) : callback();
+  //   });
+  // });
 
   describe('happy path', function () {
     for (var i = 0; i < VERSIONS.length; i++) {
