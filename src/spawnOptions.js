@@ -1,19 +1,18 @@
-var path = require('path');
-var assign = require('just-extend');
-var prepend = require('path-string-prepend');
-var NODE = process.platform === 'win32' ? 'node.exe' : 'node';
-var pathKey = require('env-path-key');
-var startsCaseInsensitiveFn = require('./startsCaseInsensitiveFn');
+const path = require('path');
+const prepend = require('path-string-prepend');
+const NODE = process.platform === 'win32' ? 'node.exe' : 'node';
+const pathKey = require('env-path-key');
+const startsCaseInsensitiveFn = require('./startsCaseInsensitiveFn');
 
-var isWindows = process.platform === 'win32';
+const isWindows = process.platform === 'win32';
 
-var startsNPM = startsCaseInsensitiveFn('npm_');
-var startsPath = startsCaseInsensitiveFn('path');
+const startsNPM = startsCaseInsensitiveFn('npm_');
+const startsPath = startsCaseInsensitiveFn('path');
 
 module.exports = function spawnOptions(installPath, options) {
-  var PATH_KEY = pathKey();
-  var processEnv = process.env;
-  var env = {};
+  const PATH_KEY = pathKey();
+  const processEnv = process.env;
+  const env = {};
   env.npm_config_binroot = isWindows ? installPath : path.join(installPath, 'bin');
   env.npm_config_root = isWindows ? installPath : path.join(installPath, 'lib');
   env.npm_config_man = isWindows ? installPath : path.join(installPath, 'man');
@@ -21,7 +20,7 @@ module.exports = function spawnOptions(installPath, options) {
   env.npm_node_execpath = path.join(env.npm_config_binroot, NODE);
 
   // copy the environment not for npm and skip case-insesitive additional paths
-  for (var key in processEnv) {
+  for (const key in processEnv) {
     // skip npm_ variants and non-matching path
     if (key.length > 4 && startsNPM(key)) continue;
     if (key.length === 4 && startsPath(key) && key !== PATH_KEY) continue;
@@ -34,5 +33,5 @@ module.exports = function spawnOptions(installPath, options) {
 
   // put the path to node and npm at the front and remove nvs
   env[PATH_KEY] = prepend(env[PATH_KEY] || '', env.npm_config_binroot);
-  return assign({}, options, { cwd: process.cwd(), env: env });
+  return { ...options, cwd: process.cwd(), env };
 };
