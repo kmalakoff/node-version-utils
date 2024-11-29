@@ -1,4 +1,4 @@
 {
   "upgrade": true,
-  "reject": ["semver", "rimraf"]
+  "reject": ["semver"]
 }
