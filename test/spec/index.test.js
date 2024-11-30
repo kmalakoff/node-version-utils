@@ -13,7 +13,8 @@ const resolveVersions = require('node-resolve-versions');
 
 const versionUtils = require('node-version-utils');
 
-const NODE = process.platform === 'win32' ? 'node.exe' : 'node';
+const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
+const NODE = isWindows ? 'node.exe' : 'node';
 const TMP_DIR = path.resolve(path.join(__dirname, '..', '..', '.tmp'));
 const OPTIONS = {
   cacheDirectory: path.join(TMP_DIR, 'cache'),
