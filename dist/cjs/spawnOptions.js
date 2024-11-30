@@ -53,10 +53,10 @@ function _object_spread_props(target, source) {
 }
 var path = require('path');
 var prepend = require('path-string-prepend');
-var NODE = process.platform === 'win32' ? 'node.exe' : 'node';
 var pathKey = require('env-path-key');
 var startsCaseInsensitiveFn = require('./startsCaseInsensitiveFn');
-var isWindows = process.platform === 'win32';
+var isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
+var NODE = isWindows ? 'node.exe' : 'node';
 var startsNPM = startsCaseInsensitiveFn('npm_');
 var startsPath = startsCaseInsensitiveFn('path');
 module.exports = function spawnOptions(installPath, options) {
