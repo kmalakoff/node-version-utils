@@ -1,10 +1,10 @@
 const path = require('path');
 const prepend = require('path-string-prepend');
-const NODE = process.platform === 'win32' ? 'node.exe' : 'node';
 const pathKey = require('env-path-key');
 const startsCaseInsensitiveFn = require('./startsCaseInsensitiveFn');
 
-const isWindows = process.platform === 'win32';
+const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
+const NODE = isWindows ? 'node.exe' : 'node';
 
 const startsNPM = startsCaseInsensitiveFn('npm_');
 const startsPath = startsCaseInsensitiveFn('path');
