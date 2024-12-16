@@ -34,19 +34,20 @@
   },
   "dependencies": {
     "core-js": "^3.39.0",
-    "cross-spawn-cb": "^1.1.1",
+    "cross-spawn-cb": "^1.1.2",
     "env-path-key": "^1.0.0",
     "path-string-prepend": "^1.0.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.2",
     "cr": "^0.1.0",
     "depcheck": "^1.4.7",
     "is-version": "^0.2.1",
-    "node-install-release": "^1.4.0",
+    "node-install-release": "^1.4.3",
     "node-resolve-versions": "^1.0.0",
-    "ts-dev-stack": "^0.17.0"
+    "ts-dev-stack": "^1.2.1"
   },
   "engines": {
     "node": ">=0.8"
