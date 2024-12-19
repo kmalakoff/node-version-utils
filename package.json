@@ -28,7 +28,7 @@
     "build": "tsds build",
     "deploy": "tsds deploy",
     "format": "biome check --write --unsafe src/ test/",
-    "test": "tsds test:node --timeout=20000",
+    "test": "tsds test:node --no-timeouts",
     "test:engines": "nvu engines npm test",
     "version": "tsds version"
   },
@@ -47,7 +47,7 @@
     "is-version": "^0.2.1",
     "node-install-release": "^1.4.3",
     "node-resolve-versions": "^1.0.0",
-    "ts-dev-stack": "^1.2.1"
+    "ts-dev-stack": "^1.2.6"
   },
   "engines": {
     "node": ">=0.8"
