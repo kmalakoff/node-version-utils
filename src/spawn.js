@@ -1,3 +1,5 @@
+// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
+const Promise = require('pinkie-promise');
 const crossSpawn = require('cross-spawn-cb');
 const spawnOptions = require('./spawnOptions');
 
