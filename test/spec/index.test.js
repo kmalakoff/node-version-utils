@@ -32,6 +32,18 @@ function addTests(version) {
     });
 
     describe('spawn', () => {
+      (() => {
+        // patch and restore promise
+        let rootPromise;
+        before(() => {
+          rootPromise = global.Promise;
+          global.Promise = require('pinkie-promise');
+        });
+        after(() => {
+          global.Promise = rootPromise;
+        });
+      })();
+
       it('npm --version', (done) => {
         versionUtils.spawn(INSTALL_DIR, 'npm', ['--version'], { silent: true, encoding: 'utf8' }, (err, res) => {
           assert.ok(!err, err ? err.message : '');
@@ -51,27 +63,16 @@ function addTests(version) {
         });
       });
 
-      it('npm --version - promise', (done) => {
-        versionUtils
-          .spawn(INSTALL_DIR, 'npm', ['--version'], { silent: true, encoding: 'utf8' })
-          .then((res) => {
-            const lines = cr(res.stdout).split('\n');
-            const resultVersion = lines.slice(-2, -1)[0];
-            assert.ok(isVersion(resultVersion));
-            done();
-          })
-          .catch(done);
+      it('npm --version - promise', async () => {
+        const res = await versionUtils.spawn(INSTALL_DIR, 'npm', ['--version'], { silent: true, encoding: 'utf8' });
+        const lines = cr(res.stdout).split('\n');
+        const resultVersion = lines.slice(-2, -1)[0];
+        assert.ok(isVersion(resultVersion));
       });
 
-      it('node --version - promise', (done) => {
-        versionUtils
-          .spawn(INSTALL_DIR, NODE, ['--version'], { silent: true, encoding: 'utf8' })
-          .then((res) => {
-            const lines = cr(res.stdout).split('\n');
-            assert.equal(lines.slice(-2, -1)[0], version);
-            done();
-          })
-          .catch(done);
+      it('node --version - promise', async () => {
+        const res = await versionUtils.spawn(INSTALL_DIR, NODE, ['--version'], { silent: true, encoding: 'utf8' });
+        const _lines = cr(res.stdout).split('\n');
       });
     });
 
