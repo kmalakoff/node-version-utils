@@ -43,7 +43,6 @@
     "version": "tsds version"
   },
   "dependencies": {
-    "cross-spawn-cb": "^1.5.8",
     "env-path-key": "^1.0.0",
     "path-string-prepend": "^1.0.0"
   },
@@ -52,6 +51,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.2",
     "cr": "^0.1.0",
+    "cross-spawn-cb": "^2.0.0",
     "depcheck": "^1.4.7",
     "is-version": "^0.2.1",
     "node-install-release": "^1.6.3",
