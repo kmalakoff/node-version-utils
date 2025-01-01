@@ -1,18 +1,20 @@
-const path = require('path');
-const prepend = require('path-string-prepend');
-const pathKey = require('env-path-key');
-const startsCaseInsensitiveFn = require('./startsCaseInsensitiveFn');
+import path from 'path';
+import pathKey from 'env-path-key';
+import prepend from 'path-string-prepend';
+import startsWithFn from './lib/startsWithFn';
 
 const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
 const NODE = isWindows ? 'node.exe' : 'node';
 
-const startsNPM = startsCaseInsensitiveFn('npm_');
-const startsPath = startsCaseInsensitiveFn('path');
+const startsNPM = startsWithFn('npm_');
+const startsPath = startsWithFn('path');
 
-module.exports = function spawnOptions(installPath, options) {
+import type { ProcessEnv, SpawnOptions } from './types';
+
+export default function spawnOptions(installPath: string, options: object = {}): SpawnOptions {
   const PATH_KEY = pathKey();
   const processEnv = process.env;
-  const env = {};
+  const env = {} as ProcessEnv;
   env.npm_config_binroot = isWindows ? installPath : path.join(installPath, 'bin');
   env.npm_config_root = isWindows ? installPath : path.join(installPath, 'lib');
   env.npm_config_man = isWindows ? installPath : path.join(installPath, 'man');
@@ -33,5 +35,5 @@ module.exports = function spawnOptions(installPath, options) {
 
   // put the path to node and npm at the front and remove nvs
   env[PATH_KEY] = prepend(env[PATH_KEY] || '', env.npm_config_binroot);
-  return { ...options, cwd: process.cwd(), env };
-};
+  return { ...options, cwd: process.cwd(), env } as SpawnOptions;
+}
