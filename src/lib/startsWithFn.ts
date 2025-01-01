@@ -1,4 +1,4 @@
-module.exports = function startsCaseInsensitiveFn(string) {
+export default function startsWithFn(string) {
   const lower = string.toLowerCase();
   const upper = string.toUpperCase();
   return function startsCaseInsensitive(key) {
@@ -8,4 +8,4 @@ module.exports = function startsCaseInsensitiveFn(string) {
     }
     return true;
   };
-};
+}
