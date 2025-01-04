@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:kmalakoff/node-version-utils.git"
+    "url": "git+ssh://git@github.com/kmalakoff/node-version-utils.git"
   },
   "license": "MIT",
   "type": "module",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "env-path-key": "^1.0.3",
-    "path-string-prepend": "^1.0.3"
+    "path-string-prepend": "^1.0.5"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
