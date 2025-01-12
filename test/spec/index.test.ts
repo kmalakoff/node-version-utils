@@ -37,7 +37,7 @@ function addTests(version) {
     describe('spawn', () => {
       it('npm --version', (done) => {
         spawn('npm', ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }), (err, res) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           const lines = cr(res.stdout).split('\n');
           const resultVersion = lines.slice(-2, -1)[0];
           assert.ok(isVersion(resultVersion));
@@ -47,7 +47,7 @@ function addTests(version) {
 
       it('node --version', (done) => {
         spawn(NODE, ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }), (err, res) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           const lines = cr(res.stdout).split('\n');
           assert.equal(lines.slice(-2, -1)[0], version);
           done();
@@ -57,31 +57,23 @@ function addTests(version) {
 
     describe('spawn.sync', () => {
       it('npm --version', () => {
-        try {
-          const res = spawn.sync('npm', ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }));
-          const lines = cr(res.stdout).split('\n');
-          const resultVersion = lines.slice(-2, -1)[0];
-          assert.ok(isVersion(resultVersion));
-        } catch (err) {
-          assert.ok(!err, err ? err.message : '');
-        }
+        const res = spawn.sync('npm', ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }));
+        const lines = cr(res.stdout).split('\n');
+        const resultVersion = lines.slice(-2, -1)[0];
+        assert.ok(isVersion(resultVersion));
       });
 
       it('node --version', () => {
-        try {
-          const res = spawn.sync(NODE, ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }));
-          const lines = cr(res.stdout).split('\n');
-          assert.equal(lines.slice(-2, -1)[0], version);
-        } catch (err) {
-          assert.ok(!err, err ? err.message : '');
-        }
+        const res = spawn.sync(NODE, ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }));
+        const lines = cr(res.stdout).split('\n');
+        assert.equal(lines.slice(-2, -1)[0], version);
       });
     });
 
     describe('spawnOptions', () => {
       it('npm --version', (done) => {
         crossSpawn('npm', ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }), (err, res) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           const lines = cr(res.stdout).split('\n');
           const resultVersion = lines.slice(-2, -1)[0];
           assert.ok(isVersion(resultVersion));
@@ -91,7 +83,7 @@ function addTests(version) {
 
       it('node --version', (done) => {
         crossSpawn(NODE, ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }), (err, res) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           const lines = cr(res.stdout).split('\n');
           assert.equal(lines.slice(-2, -1)[0], version);
           done();
@@ -99,24 +91,16 @@ function addTests(version) {
       });
 
       it('npm --version', () => {
-        try {
-          const res = crossSpawn.sync('npm', ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }));
-          const lines = cr(res.stdout).split('\n');
-          const resultVersion = lines.slice(-2, -1)[0];
-          assert.ok(isVersion(resultVersion));
-        } catch (err) {
-          assert.ok(!err, err ? err.message : '');
-        }
+        const res = crossSpawn.sync('npm', ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }));
+        const lines = cr(res.stdout).split('\n');
+        const resultVersion = lines.slice(-2, -1)[0];
+        assert.ok(isVersion(resultVersion));
       });
 
       it('node --version', () => {
-        try {
-          const res = crossSpawn.sync(NODE, ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }));
-          const lines = cr(res.stdout).split('\n');
-          assert.equal(lines.slice(-2, -1)[0], version);
-        } catch (err) {
-          assert.ok(!err, err ? err.message : '');
-        }
+        const res = crossSpawn.sync(NODE, ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }));
+        const lines = cr(res.stdout).split('\n');
+        assert.equal(lines.slice(-2, -1)[0], version);
       });
     });
   });
