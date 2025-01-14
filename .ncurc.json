@@ -1,4 +1,4 @@
 {
   "upgrade": true,
-  "reject": ["@types/*", "biomejs/*", "semver"]
+  "reject": ["@types/*", "biomejs/*", "assert", "semver"]
 }
