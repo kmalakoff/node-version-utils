@@ -1,2 +1,2 @@
-ignores: ["@types/*", "node-version-utils", "depcheck", "@biomejs/*"]
+ignores: ["node-version-utils"]
 ignoreDirs: [".tmp"]

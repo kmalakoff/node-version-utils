@@ -37,7 +37,7 @@ function addTests(version) {
     describe('spawn', () => {
       it('npm --version', (done) => {
         spawn('npm', ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }), (err, res) => {
-          if (err) return done(err);
+          if (err) return done(err.message);
           const lines = cr(res.stdout).split('\n');
           const resultVersion = lines.slice(-2, -1)[0];
           assert.ok(isVersion(resultVersion));
@@ -47,7 +47,7 @@ function addTests(version) {
 
       it('node --version', (done) => {
         spawn(NODE, ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }), (err, res) => {
-          if (err) return done(err);
+          if (err) return done(err.message);
           const lines = cr(res.stdout).split('\n');
           assert.equal(lines.slice(-2, -1)[0], version);
           done();
@@ -73,7 +73,7 @@ function addTests(version) {
     describe('spawnOptions', () => {
       it('npm --version', (done) => {
         crossSpawn('npm', ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }), (err, res) => {
-          if (err) return done(err);
+          if (err) return done(err.message);
           const lines = cr(res.stdout).split('\n');
           const resultVersion = lines.slice(-2, -1)[0];
           assert.ok(isVersion(resultVersion));
@@ -83,7 +83,7 @@ function addTests(version) {
 
       it('node --version', (done) => {
         crossSpawn(NODE, ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }), (err, res) => {
-          if (err) return done(err);
+          if (err) return done(err.message);
           const lines = cr(res.stdout).split('\n');
           assert.equal(lines.slice(-2, -1)[0], version);
           done();
