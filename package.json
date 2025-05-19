@@ -22,12 +22,12 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.cjs"
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
     },
     "./package.json": "./package.json"
   },
-  "main": "dist/cjs/index.cjs",
+  "main": "dist/cjs/index.js",
   "types": "dist/cjs/index.d.cts",
   "files": [
     "dist"
@@ -40,8 +40,8 @@
     "version": "tsds version"
   },
   "dependencies": {
-    "env-path-key": "^1.0.13",
-    "path-string-prepend": "^1.0.17"
+    "env-path-key": "^1.0.15",
+    "path-string-prepend": "^1.0.19"
   },
   "devDependencies": {
     "@types/mocha": "*",
