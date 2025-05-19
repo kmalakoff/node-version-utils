@@ -9,7 +9,7 @@ import crossSpawn from 'cross-spawn-cb';
 import spawn from 'cross-spawn-cb';
 import isVersion from 'is-version';
 import nodeInstall from 'node-install-release';
-import resolveVersions from 'node-resolve-versions';
+import * as resolveVersions from 'node-resolve-versions';
 import rimraf2 from 'rimraf2';
 
 // @ts-ignore

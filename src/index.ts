@@ -1,2 +1,2 @@
-export type * from './types';
-export { default as spawnOptions } from './spawnOptions';
+export type * from './types.js';
+export { default as spawnOptions } from './spawnOptions.js';
