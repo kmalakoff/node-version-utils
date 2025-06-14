@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "env-path-key": "^1.0.16",
-    "path-string-prepend": "^1.0.20"
+    "path-string-prepend": "^1.0.22"
   },
   "devDependencies": {
     "@types/mocha": "*",
