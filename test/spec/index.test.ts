@@ -2,18 +2,17 @@
 delete process.env.NODE_OPTIONS;
 
 import assert from 'assert';
-import path from 'path';
-import url from 'url';
 import cr from 'cr';
 import crossSpawn from 'cross-spawn-cb';
 import spawn from 'cross-spawn-cb';
 import isVersion from 'is-version';
 import nodeInstall from 'node-install-release';
 import * as resolveVersions from 'node-resolve-versions';
-import rimraf2 from 'rimraf2';
-
 // @ts-ignore
 import { spawnOptions } from 'node-version-utils';
+import path from 'path';
+import rimraf2 from 'rimraf2';
+import url from 'url';
 
 const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
 const NODE = isWindows ? 'node.exe' : 'node';
