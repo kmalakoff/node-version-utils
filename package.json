@@ -34,14 +34,14 @@
   ],
   "scripts": {
     "build": "tsds build",
-    "format": "biome check --write --unsafe src/ test/",
+    "format": "biome check --write --unsafe",
     "test": "tsds test:node --no-timeouts",
     "test:engines": "nvu engines npm test",
     "version": "tsds version"
   },
   "dependencies": {
-    "env-path-key": "^1.0.16",
-    "path-string-prepend": "^1.0.22"
+    "env-path-key": "^1.0.17",
+    "path-string-prepend": "^1.0.23"
   },
   "devDependencies": {
     "@types/mocha": "*",

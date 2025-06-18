@@ -1,5 +1,5 @@
-import path from 'path';
 import pathKey from 'env-path-key';
+import path from 'path';
 import prepend from 'path-string-prepend';
 import startsWithFn from './lib/startsWithFn.js';
 
