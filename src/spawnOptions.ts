@@ -11,7 +11,7 @@ const startsPath = startsWithFn('path');
 
 import type { ProcessEnv, SpawnOptions } from './types.ts';
 
-export default function spawnOptions(installPath: string, options: object = {}): SpawnOptions {
+export default function spawnOptions(installPath: string, options: SpawnOptions = {}): SpawnOptions {
   const PATH_KEY = pathKey();
   const processEnv = process.env;
   const bin = isWindows ? installPath : path.join(installPath, 'bin');
