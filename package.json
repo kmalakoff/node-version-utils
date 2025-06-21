@@ -40,7 +40,7 @@
     "version": "tsds version"
   },
   "dependencies": {
-    "env-path-key": "^1.0.19",
+    "env-path-key": "^1.0.20",
     "path-string-prepend": "^1.0.24"
   },
   "devDependencies": {
