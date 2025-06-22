@@ -35,8 +35,11 @@ function addTests(version) {
 
     describe('spawn', () => {
       it('npm --version', (done) => {
-        spawn('npm', ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }), (err, res) => {
-          if (err) return done(err.message);
+        spawn('npm', ['--version'], spawnOptions(installPath, { encoding: 'utf8' }), (err, res) => {
+          if (err) {
+            done(err.message);
+            return;
+          }
           const lines = cr(res.stdout).split('\n');
           const resultVersion = lines.slice(-2, -1)[0];
           assert.ok(isVersion(resultVersion));
@@ -45,8 +48,11 @@ function addTests(version) {
       });
 
       it('node --version', (done) => {
-        spawn(NODE, ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }), (err, res) => {
-          if (err) return done(err.message);
+        spawn(NODE, ['--version'], spawnOptions(installPath, { encoding: 'utf8' }), (err, res) => {
+          if (err) {
+            done(err.message);
+            return;
+          }
           const lines = cr(res.stdout).split('\n');
           assert.equal(lines.slice(-2, -1)[0], version);
           done();
@@ -56,14 +62,14 @@ function addTests(version) {
 
     describe('spawn.sync', () => {
       it('npm --version', () => {
-        const res = spawn.sync('npm', ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }));
+        const res = spawn.sync('npm', ['--version'], spawnOptions(installPath, { encoding: 'utf8' }));
         const lines = cr(res.stdout).split('\n');
         const resultVersion = lines.slice(-2, -1)[0];
         assert.ok(isVersion(resultVersion));
       });
 
       it('node --version', () => {
-        const res = spawn.sync(NODE, ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }));
+        const res = spawn.sync(NODE, ['--version'], spawnOptions(installPath, { encoding: 'utf8' }));
         const lines = cr(res.stdout).split('\n');
         assert.equal(lines.slice(-2, -1)[0], version);
       });
@@ -71,8 +77,11 @@ function addTests(version) {
 
     describe('spawnOptions', () => {
       it('npm --version', (done) => {
-        crossSpawn('npm', ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }), (err, res) => {
-          if (err) return done(err.message);
+        crossSpawn('npm', ['--version'], spawnOptions(installPath, { encoding: 'utf8' }), (err, res) => {
+          if (err) {
+            done(err.message);
+            return;
+          }
           const lines = cr(res.stdout).split('\n');
           const resultVersion = lines.slice(-2, -1)[0];
           assert.ok(isVersion(resultVersion));
@@ -81,8 +90,11 @@ function addTests(version) {
       });
 
       it('node --version', (done) => {
-        crossSpawn(NODE, ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }), (err, res) => {
-          if (err) return done(err.message);
+        crossSpawn(NODE, ['--version'], spawnOptions(installPath, { encoding: 'utf8' }), (err, res) => {
+          if (err) {
+            done(err.message);
+            return;
+          }
           const lines = cr(res.stdout).split('\n');
           assert.equal(lines.slice(-2, -1)[0], version);
           done();
@@ -90,14 +102,14 @@ function addTests(version) {
       });
 
       it('npm --version', () => {
-        const res = crossSpawn.sync('npm', ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }));
+        const res = crossSpawn.sync('npm', ['--version'], spawnOptions(installPath, { encoding: 'utf8' }));
         const lines = cr(res.stdout).split('\n');
         const resultVersion = lines.slice(-2, -1)[0];
         assert.ok(isVersion(resultVersion));
       });
 
       it('node --version', () => {
-        const res = crossSpawn.sync(NODE, ['--version'], spawnOptions(installPath, { silent: true, encoding: 'utf8' }));
+        const res = crossSpawn.sync(NODE, ['--version'], spawnOptions(installPath, { encoding: 'utf8' }));
         const lines = cr(res.stdout).split('\n');
         assert.equal(lines.slice(-2, -1)[0], version);
       });
