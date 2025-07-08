@@ -40,8 +40,8 @@
     "version": "tsds version"
   },
   "dependencies": {
-    "env-path-key": "^1.1.0",
-    "path-string-prepend": "^1.1.0"
+    "env-path-key": "*",
+    "path-string-prepend": "*"
   },
   "devDependencies": {
     "@types/mocha": "*",
