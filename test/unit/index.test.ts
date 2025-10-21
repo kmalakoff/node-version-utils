@@ -8,7 +8,6 @@ import spawn from 'cross-spawn-cb';
 import isVersion from 'is-version';
 import nodeInstall from 'node-install-release';
 import * as resolveVersions from 'node-resolve-versions';
-// @ts-ignore
 import { spawnOptions } from 'node-version-utils';
 import path from 'path';
 import rimraf2 from 'rimraf2';
