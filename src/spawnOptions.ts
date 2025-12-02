@@ -1,4 +1,5 @@
 import pathKey from 'env-path-key';
+import fs from 'fs';
 import path from 'path';
 import prepend from 'path-string-prepend';
 import startsWithFn from './lib/startsWithFn.ts';
@@ -12,6 +13,14 @@ const startsPath = startsWithFn('path');
 import type { ProcessEnv, SpawnOptions } from './types.ts';
 
 export default function spawnOptions(installPath: string, options: SpawnOptions = {}): SpawnOptions {
+  // Resolve symlinks to get real path (fixes nvm-windows symlink issues where
+  // C:\nvm4w\nodejs points to the active Node version via symlink)
+  try {
+    installPath = fs.realpathSync(installPath);
+  } catch (_e) {
+    // Keep original path if resolution fails
+  }
+
   const PATH_KEY = pathKey();
   const processEnv = process.env;
   const bin = isWindows ? installPath : path.join(installPath, 'bin');
