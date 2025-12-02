@@ -5,6 +5,7 @@ import assert from 'assert';
 import cr from 'cr';
 import crossSpawn from 'cross-spawn-cb';
 import spawn from 'cross-spawn-cb';
+import fs from 'fs';
 import isVersion from 'is-version';
 import nodeInstall from 'node-install-release';
 import * as resolveVersions from 'node-resolve-versions';
@@ -111,6 +112,54 @@ function addTests(version) {
         const res = crossSpawn.sync(NODE, ['--version'], spawnOptions(installPath, { encoding: 'utf8' }));
         const lines = cr(res.stdout).split('\n');
         assert.equal(lines.slice(-2, -1)[0], version);
+      });
+    });
+
+    describe('symlink resolution', () => {
+      let symlinkPath = null;
+
+      before(() => {
+        // Create a symlink to the installPath (like nvm-windows does)
+        symlinkPath = path.join(TMP_DIR, 'symlink-test');
+        try {
+          fs.unlinkSync(symlinkPath);
+        } catch (_e) {
+          // ignore if doesn't exist
+        }
+        fs.symlinkSync(installPath, symlinkPath, 'junction');
+      });
+
+      after(() => {
+        try {
+          fs.unlinkSync(symlinkPath);
+        } catch (_e) {
+          // ignore
+        }
+      });
+
+      it('resolves symlink in npm_config_prefix', () => {
+        const opts = spawnOptions(symlinkPath, {});
+        // Should use resolved path, not symlink path
+        assert.equal(opts.env.npm_config_prefix, installPath);
+      });
+
+      it('resolves symlink in npm_node_execpath', () => {
+        const opts = spawnOptions(symlinkPath, {});
+        const expectedBin = isWindows ? installPath : path.join(installPath, 'bin');
+        const expectedNodePath = path.join(expectedBin, NODE);
+        assert.equal(opts.env.npm_node_execpath, expectedNodePath);
+      });
+
+      it('node works via symlink path', (done) => {
+        spawn(NODE, ['--version'], spawnOptions(symlinkPath, { encoding: 'utf8' }), (err, res) => {
+          if (err) {
+            done(err.message);
+            return;
+          }
+          const lines = cr(res.stdout).split('\n');
+          assert.equal(lines.slice(-2, -1)[0], version);
+          done();
+        });
       });
     });
   });
