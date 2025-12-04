@@ -50,11 +50,11 @@
     "@types/node": "*",
     "cr": "*",
     "cross-spawn-cb": "*",
+    "fs-remove-compat": "*",
     "is-version": "*",
     "node-install-release": "*",
     "node-resolve-versions": "*",
     "node-version-use": "*",
-    "rimraf2": "*",
     "ts-dev-stack": "*",
     "tsds-config": "*"
   },

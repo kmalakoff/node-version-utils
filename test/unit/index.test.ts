@@ -6,13 +6,14 @@ import cr from 'cr';
 import crossSpawn from 'cross-spawn-cb';
 import spawn from 'cross-spawn-cb';
 import fs from 'fs';
+import { safeRm } from 'fs-remove-compat';
 import isVersion from 'is-version';
 import nodeInstall from 'node-install-release';
 import * as resolveVersions from 'node-resolve-versions';
 import { spawnOptions } from 'node-version-utils';
 import path from 'path';
-import rimraf2 from 'rimraf2';
 import url from 'url';
+import { stringIncludes } from '../lib/compat.ts';
 
 const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
 const NODE = isWindows ? 'node.exe' : 'node';
@@ -126,7 +127,7 @@ function addTests(version) {
         assert.equal(opts.env.CUSTOM_VAR, 'test');
         // Should have inherited PATH from process.env and prepended node bin
         const pathValue = opts.env.PATH || opts.env.Path || '';
-        assert.ok(pathValue.includes(installPath));
+        assert.ok(stringIncludes(pathValue, installPath));
         assert.ok(pathValue.length > installPath.length);
       });
     });
@@ -182,7 +183,7 @@ function addTests(version) {
 }
 
 describe('node-version-utils', () => {
-  before(rimraf2.bind(null, TMP_DIR, { disableGlob: true }));
+  before((cb) => safeRm(TMP_DIR, cb));
 
   describe('happy path', () => {
     for (let i = 0; i < VERSIONS.length; i++) {
