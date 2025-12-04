@@ -22,7 +22,7 @@ export default function spawnOptions(installPath: string, options: SpawnOptions 
   }
 
   const PATH_KEY = pathKey();
-  const processEnv = process.env;
+  const processEnv = options.env || process.env;
   const bin = isWindows ? installPath : path.join(installPath, 'bin');
   const env = {} as ProcessEnv;
   env.npm_node_execpath = path.join(bin, NODE);
@@ -40,7 +40,11 @@ export default function spawnOptions(installPath: string, options: SpawnOptions 
   if (env.NODE !== undefined) env.NODE = env.npm_node_execpath;
   if (env.NODE_EXE !== undefined) env.NODE_EXE = env.npm_node_execpath;
 
-  // put the path to node and npm at the front and remove nvs
-  env[PATH_KEY] = prepend(env[PATH_KEY] || '', bin) as string;
+  // put the path to node and npm at the front, fallback to process.env PATH if missing
+  const basePath = env[PATH_KEY] || process.env[PATH_KEY] || '';
+  if (options.env && !options.env[PATH_KEY]) {
+    console.warn(`node-version-utils: options.env missing ${PATH_KEY}, falling back to process.env.${PATH_KEY}`);
+  }
+  env[PATH_KEY] = prepend(basePath, bin) as string;
   return { ...options, cwd: process.cwd(), env } as SpawnOptions;
 }
