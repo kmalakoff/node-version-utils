@@ -113,6 +113,22 @@ function addTests(version) {
         const lines = cr(res.stdout).split('\n');
         assert.equal(lines.slice(-2, -1)[0], version);
       });
+
+      it('should merge options.env with constructed env', () => {
+        const opts = spawnOptions(installPath, { env: { CUSTOM_VAR: 'test' } });
+        assert.equal(opts.env.CUSTOM_VAR, 'test');
+        assert.equal(opts.env.npm_config_prefix, installPath); // constructed env preserved
+      });
+
+      it('should fallback to process.env PATH when options.env lacks PATH', () => {
+        const customEnv = { CUSTOM_VAR: 'test' }; // no PATH
+        const opts = spawnOptions(installPath, { env: customEnv });
+        assert.equal(opts.env.CUSTOM_VAR, 'test');
+        // Should have inherited PATH from process.env and prepended node bin
+        const pathValue = opts.env.PATH || opts.env.Path || '';
+        assert.ok(pathValue.includes(installPath));
+        assert.ok(pathValue.length > installPath.length);
+      });
     });
 
     describe('symlink resolution', () => {
