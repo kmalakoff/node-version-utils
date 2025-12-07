@@ -40,11 +40,11 @@ export default function spawnOptions(installPath: string, options: SpawnOptions 
   if (env.NODE !== undefined) env.NODE = env.npm_node_execpath;
   if (env.NODE_EXE !== undefined) env.NODE_EXE = env.npm_node_execpath;
 
-  // put the path to node and npm at the front, fallback to process.env PATH if missing
-  const basePath = env[PATH_KEY] || process.env[PATH_KEY] || '';
+  // put the path to node and npm at the front
   if (options.env && !options.env[PATH_KEY]) {
-    console.warn(`node-version-utils: options.env missing ${PATH_KEY}, falling back to process.env.${PATH_KEY}`);
+    throw new Error(`node-version-utils: options.env missing required ${PATH_KEY}`);
   }
+  const basePath = env[PATH_KEY] || '';
   env[PATH_KEY] = prepend(basePath, bin) as string;
   return { ...options, cwd: process.cwd(), env } as SpawnOptions;
 }

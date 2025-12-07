@@ -5,6 +5,7 @@ import assert from 'assert';
 import cr from 'cr';
 import crossSpawn from 'cross-spawn-cb';
 import spawn from 'cross-spawn-cb';
+import pathKey from 'env-path-key';
 import fs from 'fs';
 import { safeRm } from 'fs-remove-compat';
 import isVersion from 'is-version';
@@ -13,7 +14,6 @@ import * as resolveVersions from 'node-resolve-versions';
 import { spawnOptions } from 'node-version-utils';
 import path from 'path';
 import url from 'url';
-import { stringIncludes } from '../lib/compat.ts';
 
 const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
 const NODE = isWindows ? 'node.exe' : 'node';
@@ -116,19 +116,16 @@ function addTests(version) {
       });
 
       it('should merge options.env with constructed env', () => {
-        const opts = spawnOptions(installPath, { env: { CUSTOM_VAR: 'test' } });
+        const PATH_KEY = pathKey();
+        const opts = spawnOptions(installPath, { env: { CUSTOM_VAR: 'test', [PATH_KEY]: process.env[PATH_KEY] } });
         assert.equal(opts.env.CUSTOM_VAR, 'test');
         assert.equal(opts.env.npm_config_prefix, installPath); // constructed env preserved
       });
 
-      it('should fallback to process.env PATH when options.env lacks PATH', () => {
-        const customEnv = { CUSTOM_VAR: 'test' }; // no PATH
-        const opts = spawnOptions(installPath, { env: customEnv });
-        assert.equal(opts.env.CUSTOM_VAR, 'test');
-        // Should have inherited PATH from process.env and prepended node bin
-        const pathValue = opts.env.PATH || opts.env.Path || '';
-        assert.ok(stringIncludes(pathValue, installPath));
-        assert.ok(pathValue.length > installPath.length);
+      it('should throw when options.env lacks PATH', () => {
+        const PATH_KEY = pathKey();
+        const customEnv = { CUSTOM_VAR: 'test' }; // no PATH - this is incorrect usage
+        assert.throws(() => spawnOptions(installPath, { env: customEnv }), { message: `node-version-utils: options.env missing required ${PATH_KEY}` });
       });
     });
 
