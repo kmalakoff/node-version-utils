@@ -49,7 +49,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^25.0.1",
     "cr": "^0.1.0",
-    "cross-spawn-cb": "^2.4.12",
+    "cross-spawn-cb": "^2.4.13",
     "fs-remove-compat": "^0.2.2",
     "is-version": "^1.0.8",
     "node-install-release": "^1.16.2",
