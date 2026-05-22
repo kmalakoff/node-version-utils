@@ -195,6 +195,17 @@ describe('node-version-utils', () => {
     }
   });
 
-  // TODO
-  describe('unhappy path', () => {});
+  describe('unhappy path', () => {
+    describe('spawnOptions', () => {
+      it('should throw a TypeError when installPath is not a string', () => {
+        try {
+          spawnOptions(undefined as any);
+          assert.ok(false, 'Expected an error to be thrown');
+        } catch (err) {
+          assert.ok(err instanceof TypeError);
+          assert.ok(err.message.includes('installPath must be a string'));
+        }
+      });
+    });
+  });
 });
