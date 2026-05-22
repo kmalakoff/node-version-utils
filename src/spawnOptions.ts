@@ -13,6 +13,7 @@ const startsPath = startsWithFn('path');
 import type { ProcessEnv, SpawnOptions } from './types.ts';
 
 export default function spawnOptions(installPath: string, options: SpawnOptions = {}): SpawnOptions {
+  if (typeof installPath !== 'string') throw new TypeError(`node-version-utils: installPath must be a string, got ${typeof installPath}`);
   // Resolve symlinks to get real path (fixes nvm-windows symlink issues where
   // C:\nvm4w\nodejs points to the active Node version via symlink)
   try {
