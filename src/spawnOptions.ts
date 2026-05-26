@@ -4,7 +4,7 @@ import path from 'path';
 import prepend from 'path-string-prepend';
 import startsWithFn from './lib/startsWithFn.ts';
 
-const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
+const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE ?? '');
 const NODE = isWindows ? 'node.exe' : 'node';
 
 const startsNPM = startsWithFn('npm_');
