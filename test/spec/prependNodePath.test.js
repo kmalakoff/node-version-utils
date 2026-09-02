@@ -62,6 +62,8 @@ describe('prependNodePath', function () {
   });
 
   describe('nodejs', function () {
+    if (process.platform !== 'win32') return;
+
     it('prepends - exists at front', function () {
       var envPaths = ['install/path', 'other/path', 'windows/nodejs', 'another/path'];
       var envPath = envPaths.join(DELIMITER);

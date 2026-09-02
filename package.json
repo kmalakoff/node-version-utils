@@ -46,7 +46,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "is-version": "^0.2.0",
     "mocha-compat": "^3.5.5",
-    "node-install-release": "^0.1.29",
+    "node-install-release": "^0.1.30",
     "prettier": "^2.0.5",
     "rimraf": "^2.7.1"
   },
