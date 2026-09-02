@@ -1,6 +1,6 @@
 {
   "name": "node-version-utils",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Utilities for running commands on a specific version of node by installed path",
   "keywords": [
     "node",
@@ -24,38 +24,33 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "prepublishOnly": "dtd \"npm run lint\" \"depcheck\"",
-    "test": "mocha-compat test/spec/**/*.test.js --no-timeouts",
-    "test:engines": "nvu engines npm test"
+    "test": "mocha-compat test/spec/**/*.test.js --no-timeouts"
   },
   "dependencies": {
-    "cross-spawn-cb": "^0.4.1",
-    "env-path-key": "^0.1.0",
-    "object-assign": "^4.1.1",
+    "cross-spawn-cb": "^0.5.9",
+    "just-extend": "^6.0.1",
     "path-string-prepend": "^0.2.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
+    "@typescript-eslint/parser": "^5.30.0",
     "cr": "^0.1.0",
-    "depcheck": "^1.4.2",
-    "dis-dat": "^0.1.3",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
+    "depcheck": "^1.4.3",
+    "dis-dat": "^0.1.6",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-promise": "^6.0.0",
     "is-version": "^0.2.0",
     "lodash.find": "^4.6.0",
     "match-semver": "^0.1.0",
     "mocha-compat": "^3.5.5",
-    "node-install-release": "^0.2.2",
-    "node-version-use": "^0.2.0",
-    "prettier": "^2.4.1",
-    "rimraf": "^2.7.1",
+    "node-install-release": "^0.2.5",
+    "prettier": "^2.7.1",
     "semver": "^5.7.1"
   },
   "engines": {
-    "node": ">=0.10"
+    "node": ">=0.8"
   }
 }
