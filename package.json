@@ -1,6 +1,6 @@
 {
   "name": "node-version-utils",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Utilities for running commands on a specific version of node by installed path",
   "keywords": [
     "node",
@@ -28,9 +28,8 @@
   },
   "dependencies": {
     "cross-spawn-cb": "^0.3.1",
-    "lodash.keys": "^4.2.0",
     "object-assign": "^4.1.1",
-    "path-string-prepend": "^0.1.0"
+    "path-string-prepend": "^0.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
@@ -49,10 +48,11 @@
     "match-semver": "^0.1.0",
     "mocha-compat": "^3.5.5",
     "node-install-release": "^0.1.30",
-    "prettier": "^2.0.5",
-    "rimraf": "^2.7.1"
+    "prettier": "^2.3.2",
+    "rimraf": "^2.7.1",
+    "semver": "^5.7.1"
   },
   "engines": {
-    "node": ">=0.8"
+    "node": ">=0.12"
   }
 }
