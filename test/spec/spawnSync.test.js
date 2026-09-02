@@ -1,6 +1,6 @@
 var assert = require('assert');
 var path = require('path');
-var rimraf = require('rimraf');
+// var rimraf = require('rimraf');
 var isVersion = require('is-version');
 var cr = require('cr');
 var nodeInstall = require('node-install-release');
@@ -34,7 +34,7 @@ function addTests(version) {
 
     it('npm --version', function () {
       try {
-        var res = versionUtils.spawnSync(INSTALL_DIR, 'npm', ['--version'], { silent: true, stdout: 'string' });
+        var res = versionUtils.spawnSync(INSTALL_DIR, 'npm', ['--version'], { silent: true, encoding: 'utf8' });
         var lines = cr(res.stdout).split('\n');
         var resultVersion = lines.slice(-2, -1)[0];
         assert.ok(isVersion(resultVersion));
@@ -46,7 +46,7 @@ function addTests(version) {
 
     it('node --version', function () {
       try {
-        var res = versionUtils.spawnSync(INSTALL_DIR, NODE, ['--version'], { silent: true, stdout: 'string' });
+        var res = versionUtils.spawnSync(INSTALL_DIR, NODE, ['--version'], { silent: true, encoding: 'utf8' });
         var lines = cr(res.stdout).split('\n');
         assert.equal(lines.slice(-2, -1)[0], version);
       } catch (err) {
@@ -57,11 +57,12 @@ function addTests(version) {
 }
 
 describe('spawnSync', function () {
-  before(function (callback) {
-    rimraf(TMP_DIR, function (err) {
-      err && err.code !== 'EEXIST' ? callback(err) : callback();
-    });
-  });
+  // TODO: put back when get-remote works on 0.8
+  // before(function (callback) {
+  //   rimraf(TMP_DIR, function (err) {
+  //     err && err.code !== 'EEXIST' ? callback(err) : callback();
+  //   });
+  // });
 
   describe('happy path', function () {
     for (var i = 0; i < VERSIONS.length; i++) {

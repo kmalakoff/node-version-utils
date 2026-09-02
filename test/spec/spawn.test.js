@@ -1,6 +1,6 @@
 var assert = require('assert');
 var path = require('path');
-var rimraf = require('rimraf');
+// var rimraf = require('rimraf');
 var isVersion = require('is-version');
 var cr = require('cr');
 var nodeInstall = require('node-install-release');
@@ -33,7 +33,7 @@ function addTests(version) {
     });
 
     it('npm --version', function (done) {
-      versionUtils.spawn(INSTALL_DIR, 'npm', ['--version'], { silent: true, stdout: 'string' }, function (err, res) {
+      versionUtils.spawn(INSTALL_DIR, 'npm', ['--version'], { silent: true, encoding: 'utf8' }, function (err, res) {
         assert.ok(!err);
         var lines = cr(res.stdout).split('\n');
         var resultVersion = lines.slice(-2, -1)[0];
@@ -44,7 +44,7 @@ function addTests(version) {
     });
 
     it('node --version', function (done) {
-      versionUtils.spawn(INSTALL_DIR, NODE, ['--version'], { silent: true, stdout: 'string' }, function (err, res) {
+      versionUtils.spawn(INSTALL_DIR, NODE, ['--version'], { silent: true, encoding: 'utf8' }, function (err, res) {
         assert.ok(!err);
         var lines = cr(res.stdout).split('\n');
         assert.equal(lines.slice(-2, -1)[0], version);
@@ -56,7 +56,7 @@ function addTests(version) {
       if (typeof Promise === 'undefined') return done(); // no promise support
 
       versionUtils
-        .spawn(INSTALL_DIR, 'npm', ['--version'], { silent: true, stdout: 'string' })
+        .spawn(INSTALL_DIR, 'npm', ['--version'], { silent: true, encoding: 'utf8' })
         .then(function (res) {
           var lines = cr(res.stdout).split('\n');
           var resultVersion = lines.slice(-2, -1)[0];
@@ -71,7 +71,7 @@ function addTests(version) {
       if (typeof Promise === 'undefined') return done(); // no promise support
 
       versionUtils
-        .spawn(INSTALL_DIR, NODE, ['--version'], { silent: true, stdout: 'string' })
+        .spawn(INSTALL_DIR, NODE, ['--version'], { silent: true, encoding: 'utf8' })
         .then(function (res) {
           var lines = cr(res.stdout).split('\n');
           assert.equal(lines.slice(-2, -1)[0], version);
@@ -83,11 +83,12 @@ function addTests(version) {
 }
 
 describe('spawn', function () {
-  before(function (callback) {
-    rimraf(TMP_DIR, function (err) {
-      err && err.code !== 'EEXIST' ? callback(err) : callback();
-    });
-  });
+  // TODO: put back when get-remote works on 0.8
+  // before(function (callback) {
+  //   rimraf(TMP_DIR, function (err) {
+  //     err && err.code !== 'EEXIST' ? callback(err) : callback();
+  //   });
+  // });
 
   describe('happy path', function () {
     for (var i = 0; i < VERSIONS.length; i++) {
