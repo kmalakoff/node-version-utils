@@ -1,7 +1,7 @@
 import pathKey from 'env-path-key';
 import path from 'path';
 import prepend from 'path-string-prepend';
-import startsWithFn from './lib/startsWithFn.js';
+import startsWithFn from './lib/startsWithFn.ts';
 
 const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
 const NODE = isWindows ? 'node.exe' : 'node';
@@ -9,7 +9,7 @@ const NODE = isWindows ? 'node.exe' : 'node';
 const startsNPM = startsWithFn('npm_');
 const startsPath = startsWithFn('path');
 
-import type { ProcessEnv, SpawnOptions } from './types.js';
+import type { ProcessEnv, SpawnOptions } from './types.ts';
 
 export default function spawnOptions(installPath: string, options: object = {}): SpawnOptions {
   const PATH_KEY = pathKey();
