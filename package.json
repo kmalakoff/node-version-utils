@@ -1,6 +1,6 @@
 {
   "name": "node-version-utils",
-  "version": "0.1.16",
+  "version": "0.1.18",
   "description": "Utilities for running commands on a specific version of node by installed path",
   "keywords": [
     "node",
@@ -47,7 +47,7 @@
     "lodash.find": "^4.6.0",
     "match-semver": "^0.1.0",
     "mocha-compat": "^3.5.5",
-    "node-install-release": "^0.1.30",
+    "node-install-release": "^0.1.31",
     "prettier": "^2.3.2",
     "rimraf": "^2.7.1",
     "semver": "^5.7.1"
