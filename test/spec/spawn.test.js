@@ -1,6 +1,6 @@
 var assert = require('assert');
 var path = require('path');
-// var rimraf = require('rimraf');
+var rimraf = require('rimraf');
 var isVersion = require('is-version');
 var cr = require('cr');
 var nodeInstall = require('node-install-release');
@@ -83,12 +83,11 @@ function addTests(version) {
 }
 
 describe('spawn', function () {
-  // TODO: put back when get-remote works on 0.8
-  // before(function (callback) {
-  //   rimraf(TMP_DIR, function (err) {
-  //     err && err.code !== 'EEXIST' ? callback(err) : callback();
-  //   });
-  // });
+  before(function (callback) {
+    rimraf(TMP_DIR, function (err) {
+      err && err.code !== 'EEXIST' ? callback(err) : callback();
+    });
+  });
 
   describe('happy path', function () {
     for (var i = 0; i < VERSIONS.length; i++) {
