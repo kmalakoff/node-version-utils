@@ -125,7 +125,12 @@ function addTests(version) {
       it('should throw when options.env lacks PATH', () => {
         const PATH_KEY = pathKey();
         const customEnv = { CUSTOM_VAR: 'test' }; // no PATH - this is incorrect usage
-        assert.throws(() => spawnOptions(installPath, { env: customEnv }), { message: `node-version-utils: options.env missing required ${PATH_KEY}` });
+        try {
+          spawnOptions(installPath, { env: customEnv });
+          assert.ok(false, 'Expected an error to be thrown');
+        } catch (err) {
+          assert.equal(err.message, `node-version-utils: options.env missing required ${PATH_KEY}`);
+        }
       });
     });
 
