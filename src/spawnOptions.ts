@@ -44,7 +44,7 @@ export default function spawnOptions(installPath: string, options: SpawnOptions 
   if (options.env && !options.env[PATH_KEY]) {
     throw new Error(`node-version-utils: options.env missing required ${PATH_KEY}`);
   }
-  const basePath = env[PATH_KEY] || '';
+  const basePath = env[PATH_KEY] || process.env[PATH_KEY] || '';
   env[PATH_KEY] = prepend(basePath, bin) as string;
   return { ...options, cwd: process.cwd(), env } as SpawnOptions;
 }
