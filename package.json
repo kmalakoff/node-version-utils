@@ -20,9 +20,6 @@
   },
   "license": "MIT",
   "main": "index.js",
-  "bin": {
-    "nvu": "./bin/node-version-utils.js"
-  },
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint .",
@@ -48,8 +45,7 @@
     "is-version": "^0.2.0",
     "mocha-compat": "^3.5.5",
     "node-install-release": "^0.1.21",
-    "prettier": "^2.0.5",
-    "rimraf": "^2.7.1"
+    "prettier": "^2.0.5"
   },
   "engines": {
     "node": ">=0.8"
