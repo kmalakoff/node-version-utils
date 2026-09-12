@@ -1,4 +1,4 @@
-// remove NODE_OPTIONS from ts-dev-stack
+// remove NODE_OPTIONS to not interfere with tests
 delete process.env.NODE_OPTIONS;
 
 import assert from 'assert';
@@ -22,7 +22,7 @@ const TMP_DIR = path.join(path.join(__dirname, '..', '..', '.tmp'));
 const OPTIONS = {
   storagePath: path.join(TMP_DIR),
 };
-const VERSIONS = resolveVersions.sync('>=20', { range: 'major,even' });
+const VERSIONS = resolveVersions.sync('20', { range: 'major' });
 
 function addTests(version) {
   describe(version, () => {
@@ -64,6 +64,7 @@ function addTests(version) {
     describe('spawn.sync', () => {
       it('npm --version', () => {
         const res = spawn.sync('npm', ['--version'], spawnOptions(installPath, { encoding: 'utf8' }));
+        assert.equal(res.status, 0, `npm --version should exit with 0, got ${res.status}: ${res.stderr}`);
         const lines = cr(res.stdout).split('\n');
         const resultVersion = lines.slice(-2, -1)[0];
         assert.ok(isVersion(resultVersion));
@@ -71,6 +72,7 @@ function addTests(version) {
 
       it('node --version', () => {
         const res = spawn.sync(NODE, ['--version'], spawnOptions(installPath, { encoding: 'utf8' }));
+        assert.equal(res.status, 0, `node --version should exit with 0, got ${res.status}: ${res.stderr}`);
         const lines = cr(res.stdout).split('\n');
         assert.equal(lines.slice(-2, -1)[0], version);
       });
