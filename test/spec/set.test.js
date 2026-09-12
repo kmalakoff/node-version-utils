@@ -82,5 +82,5 @@ describe('spawn', function () {
   });
 
   // TODO
-  describe('unhappy path', function () { });
+  describe('unhappy path', function () {});
 });
