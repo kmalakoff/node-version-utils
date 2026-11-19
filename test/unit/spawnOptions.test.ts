@@ -14,6 +14,7 @@ import * as resolveVersions from 'node-resolve-versions';
 import { spawnOptions } from 'node-version-utils';
 import path from 'path';
 import url from 'url';
+import { CACHE_DIR } from '../lib/constants.ts';
 
 const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE ?? '');
 const NODE = isWindows ? 'node.exe' : 'node';
@@ -21,6 +22,7 @@ const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : 
 const TMP_DIR = path.join(path.join(__dirname, '..', '..', '.tmp'));
 const OPTIONS = {
   storagePath: path.join(TMP_DIR),
+  cachePath: CACHE_DIR,
 };
 const VERSIONS = resolveVersions.sync('20', { range: 'major' });
 
